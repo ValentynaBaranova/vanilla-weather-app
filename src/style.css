@@ -3,8 +3,8 @@ body {
 }
 
 h1 {
-  color: #7c7c7c;
-  font-size: 24px;
+  color: #70757a !important;
+  font-size: 28px !important;
   font-weight: 100;
   line-height: 28px;
   margin: 0;
@@ -16,9 +16,9 @@ ul {
 }
 
 li {
-  color: #7c7c7c;
+  color: #70757a;
   font-size: 16px;
-  font-weight: 100;
+  font-weight: normal;
   height: 19px;
   line-height: 1;
   list-style: none;
@@ -36,6 +36,8 @@ li {
   height: 64px;
   width: 64px;
   margin-right: 10px;
+  display: block;
+  float: left;
 }
 
 .temperature {
