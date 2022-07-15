@@ -22,16 +22,6 @@ if (min <= 9) {
 let dayTime = document.querySelector("li#date");
 dayTime.innerHTML = `${day}, ${hour}:${min} `;
 
-//function GetnameCity(event) {
-// event.preventDefault();
-// let cityName = document.querySelector("#city-input");
-// let heading = document.querySelector("h1#city");
-//// heading.innerHTML = `${cityName.value}`;
-//}
-
-////let form = document.querySelector("form.search-form");
-//form.addEventListener("submit", GetnameCity);
-
 function searchCity(city) {
   var apiKey = "03cc9b8479bb5a2db9ec53fe58f6ab8a";
   var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -49,6 +39,7 @@ function GetTemp(response) {
   showCity.innerHTML = response.data.name;
 
   let showTemp = document.querySelector("#temperature");
+  temp = Math.round(response.data.main.temp);
   showTemp.innerHTML = Math.round(response.data.main.temp);
 
   let showHumidity = document.querySelector("#humidity");
@@ -63,12 +54,22 @@ function GetTemp(response) {
 }
 
 function Getfahrenheit() {
-  let fahrenheit = document.querySelector("#temperature");
-  fahrenheit.innerHTML = Math.round(Number(fahrenheit.innerHTML) * 1.8 + 35);
+  document.querySelector("#temperature").innerHTML = Math.round(
+    Number(temp) * 1.8 + 35
+  );
+}
+
+function Getcelsius() {
+  document.querySelector("#temperature").innerHTML = temp;
 }
 
 let fahrenheitType = document.querySelector("a#fahrenheit-link");
 fahrenheitType.addEventListener("click", Getfahrenheit);
 
+let celsiusType = document.querySelector("a#celsius-link");
+celsiusType.addEventListener("click", Getcelsius);
+
 var form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+var temp = 19;
