@@ -32,17 +32,17 @@ dayTime.innerHTML = `${day}, ${hour}:${min} `;
 ////let form = document.querySelector("form.search-form");
 //form.addEventListener("submit", GetnameCity);
 
-//function searchCity(city) {
-var apiKey = "03cc9b8479bb5a2db9ec53fe58f6ab8a";
-var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(GetTemp);
-//}
+function searchCity(city) {
+  var apiKey = "03cc9b8479bb5a2db9ec53fe58f6ab8a";
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(GetTemp);
+}
 
-//function handleSubmit(event) {
-// event.preventDefault();
-// var city = document.querySelector("#city-input").value;
-// searchCity(city);
-//}
+function handleSubmit(event) {
+  event.preventDefault();
+  var city = document.querySelector("#city-input").value;
+  searchCity(city);
+}
 
 function GetTemp(response) {
   let showCity = document.querySelector("#city");
@@ -62,21 +62,13 @@ function GetTemp(response) {
   console.log(response.data);
 }
 
-function Getcelsius() {
-  let temperatureValue = document.querySelector("span#temperature");
-  return Number(temperatureValue.innerHTML);
-}
-
-function Getfahrenheit(event) {
-  event.preventDefault();
-  let temperatureValue = Getcelsius();
-  temperatureValue.innerHTML = Math.round(
-    Number(temperatureValue.innerHTML) * 1.8 + 35
-  );
+function Getfahrenheit() {
+  let fahrenheit = document.querySelector("#temperature");
+  fahrenheit.innerHTML = Math.round(Number(fahrenheit.innerHTML) * 1.8 + 35);
 }
 
 let fahrenheitType = document.querySelector("a#fahrenheit-link");
 fahrenheitType.addEventListener("click", Getfahrenheit);
 
-let celsiusType = document.querySelector("a#celsius-link");
-celsiusType.addEventListener("click", Getcelsius);
+var form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
