@@ -11,6 +11,7 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Weather App</title>
   </head>
   <body>
@@ -41,7 +42,7 @@
         <h1 id="city">Sydney NSW, Australia</h1>
         <ul>
           <li id="date">Wednesday 15:10</li>
-          <li>Partly Cloudy</li>
+          <li id="description">Partly Cloudy</li>
         </ul>
         <div class="row">
           <div class="col-6">
@@ -62,9 +63,9 @@
           </div>
           <div class="col-6">
             <ul>
-              <li>Precipitation: 0%</li>
-              <li>Humidity: 77%</li>
-              <li>Wind: 8 km/h</li>
+              <li>Precipitation: <span id="precipitation">0</span>%</li>
+              <li>Humidity: <span id="humidity">77</span>%</li>
+              <li>Wind: <span id="wind">8</span> km/h</li>
             </ul>
           </div>
         </div>
