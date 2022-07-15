@@ -22,60 +22,54 @@ if (min <= 9) {
 let dayTime = document.querySelector("li#date");
 dayTime.innerHTML = `${day}, ${hour}:${min} `;
 
-function GetnameCity(event) {
-  event.preventDefault();
-  let cityName = document.querySelector("#city-input");
-  let heading = document.querySelector("h1#city");
-  heading.innerHTML = `${cityName.value}`;
-}
+//function GetnameCity(event) {
+// event.preventDefault();
+// let cityName = document.querySelector("#city-input");
+// let heading = document.querySelector("h1#city");
+//// heading.innerHTML = `${cityName.value}`;
+//}
 
-let form = document.querySelector("form.search-form");
-form.addEventListener("submit", GetnameCity);
+////let form = document.querySelector("form.search-form");
+//form.addEventListener("submit", GetnameCity);
 
-function Getcelsius(event) {
-  event.preventDefault();
-  let temperatureValue = document.querySelector("span#temperature");
-  temperatureValue.innerHTML = 17;
-}
+//function searchCity(city) {
+var apiKey = "03cc9b8479bb5a2db9ec53fe58f6ab8a";
+var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(GetTemp);
+//}
 
-function searchCity(city) {
-  var apiKey = "03cc9b8479bb5a2db9ec53fe58f6ab8a";
-  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(GetTemp);
-}
-
-function handleSubmit(event) {
-  event.preventDefault();
-  var city = document.querySelector("#city-input").value;
-  searchCity(city);
-}
+//function handleSubmit(event) {
+// event.preventDefault();
+// var city = document.querySelector("#city-input").value;
+// searchCity(city);
+//}
 
 function GetTemp(response) {
-  let city = response.data.name;
   let showCity = document.querySelector("#city");
-  showCity.innerHTML = city;
+  showCity.innerHTML = response.data.name;
 
-  let temperature = Math.round(response.data.main.temp);
   let showTemp = document.querySelector("#temperature");
-  showTemp.innerHTML = `${temperature}`;
+  showTemp.innerHTML = Math.round(response.data.main.temp);
 
-  let humidity = Math.round(response.data.main.humidity);
   let showHumidity = document.querySelector("#humidity");
-  showHumidity.innerHTML = `${humidity}`;
+  showHumidity.innerHTML = Math.round(response.data.main.humidity);
 
-  let wind = Math.round(response.data.wind.speed);
   let showWind = document.querySelector("#wind");
-  showWind.innerHTML = `${wind}`;
+  showWind.innerHTML = Math.round(response.data.wind.speed);
 
-  let description = response.data.weather[0].main;
   let showDescription = document.querySelector("#description");
-  showDescription.innerHTML = `${description}`;
+  showDescription.innerHTML = response.data.weather[0].main;
+  console.log(response.data);
+}
+
+function Getcelsius() {
+  let temperatureValue = document.querySelector("span#temperature");
+  return Number(temperatureValue.innerHTML);
 }
 
 function Getfahrenheit(event) {
   event.preventDefault();
-  let temperatureValue = document.querySelector("span#temperature");
-  temperatureValue.innerHTML = 17;
+  let temperatureValue = Getcelsius();
   temperatureValue.innerHTML = Math.round(
     Number(temperatureValue.innerHTML) * 1.8 + 35
   );
