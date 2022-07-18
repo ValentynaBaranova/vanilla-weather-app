@@ -39,8 +39,9 @@ function GetTemp(response) {
   showCity.innerHTML = response.data.name;
 
   let showTemp = document.querySelector("#temperature");
-  temp = Math.round(response.data.main.temp);
   showTemp.innerHTML = Math.round(response.data.main.temp);
+
+  celsiusTemperature = Math.round(response.data.main.temp);
 
   let showHumidity = document.querySelector("#humidity");
   showHumidity.innerHTML = Math.round(response.data.main.humidity);
@@ -59,15 +60,23 @@ function GetTemp(response) {
   iconElement.setAttribute("alt", response.data.weather[0].main);
 }
 
-function Getfahrenheit() {
+function Getfahrenheit(event) {
+  event.preventDefault();
+  celsiusType.classList.remove("active");
+  fahrenheitType.classList.add("active");
   document.querySelector("#temperature").innerHTML = Math.round(
-    Number(temp) * 1.8 + 35
+    Number(celsiusTemperature) * 1.8 + 35
   );
 }
 
-function Getcelsius() {
-  document.querySelector("#temperature").innerHTML = temp;
+function Getcelsius(event) {
+  event.preventDefault();
+  celsiusType.classList.add("active");
+  fahrenheitType.classList.remove("active");
+  document.querySelector("#temperature").innerHTML = celsiusTemperature;
 }
+
+let celsiusTemperature = null;
 
 let fahrenheitType = document.querySelector("a#fahrenheit-link");
 fahrenheitType.addEventListener("click", Getfahrenheit);
@@ -77,5 +86,3 @@ celsiusType.addEventListener("click", Getcelsius);
 
 var form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
-
-var temp = 19;
