@@ -50,7 +50,13 @@ function GetTemp(response) {
 
   let showDescription = document.querySelector("#description");
   showDescription.innerHTML = response.data.weather[0].main;
-  console.log(response.data);
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].main);
 }
 
 function Getfahrenheit() {
