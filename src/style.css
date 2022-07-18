@@ -12,7 +12,7 @@ h1 {
 
 ul {
   margin: 0 0 10px;
-  padding: 0;
+  padding: 0 !important;
 }
 
 li {
@@ -52,6 +52,10 @@ li {
   top: -34px;
 }
 
+.units a {
+  font-size: 20px;
+}
+
 .search-form {
   margin-bottom: 20px;
 }
@@ -60,8 +64,18 @@ li {
   color: rgb(33, 33, 33);
   cursor: default;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .active:hover {
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+}
+
+.footer a {
+  font-weight: bold;
   text-decoration: none;
 }
