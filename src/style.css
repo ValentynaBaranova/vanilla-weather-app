@@ -97,4 +97,9 @@ li {
 
 .weather-forecast-temperatures {
   font-size: 14px;
+  font-weight: bold;
+}
+
+#description {
+  text-transform: capitalize;
 }
