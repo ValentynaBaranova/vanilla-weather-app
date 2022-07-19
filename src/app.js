@@ -113,5 +113,7 @@ function GetTemp(response) {
   GetForecast(response.data.coord);
 }
 
+searchCity("Kyiv");
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
