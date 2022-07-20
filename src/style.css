@@ -52,23 +52,14 @@ li {
   top: -34px;
 }
 
-.units a {
+.units {
   font-size: 20px;
+  color: rgb(33, 33, 33);
+  font-weight: bold;
 }
 
 .search-form {
   margin-bottom: 20px;
-}
-
-.active {
-  color: rgb(33, 33, 33);
-  cursor: default;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.active:hover {
-  text-decoration: none;
 }
 
 .footer {
